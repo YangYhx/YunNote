@@ -14,6 +14,7 @@
           v-model="formData.content"
           ref="myQuillEditor"
           :options="editorOption"
+          @change="onEditorChange($event)"
         >
         </quill-editor>
       </div>
@@ -40,7 +41,8 @@
         return {
           formData:{
             content: '',
-            title:''
+            title:'',
+            contentText:''
           },
 
           // 富文本框参数设置
@@ -64,6 +66,13 @@
               }
             }
           }
+        }
+      },
+      methods:{
+        onEditorChange({ quill, html, text }){
+          console.log(text)
+          this.formData.contentText = text
+          this.formData.contentText = this.formData.contentText.substring(0,200) + '...'
         }
       }
     }

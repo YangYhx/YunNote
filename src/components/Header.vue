@@ -1,15 +1,32 @@
 <template>
     <div class="wrap">
         <header class="content">
-          <div class="fll point" @click="$router.push('/')">云笔记</div>
-          <el-button class="flr point" @click="$router.push('/writenote')">写笔记</el-button>
+          <div class="fll point" @click="$router.push('/index')">云笔记</div>
+          <el-button class="flr point" @click="hendle">写笔记</el-button>
         </header>
     </div>
 </template>
 
 <script>
     export default {
-        name: "Header"
+        name: "Header",
+      data(){
+          return {
+            userinfo:{
+              username:''
+            }
+          }
+      },
+      methods:{
+          hendle(){
+            this.userinfo = {...this.$store.state.userInfo}
+            if(this.userinfo.username){
+              this.$router.push('/writenote')
+            }else {
+              this.$message('请先登录')
+            }
+          }
+      }
     }
 </script>
 

@@ -16,9 +16,13 @@ const coms = {
 const router = new Router({
   routes: [
     {
-      path: '/',
+      path: '/index',
       name: 'index',
       component: coms.index
+    },
+    {
+      path: '/',
+      redirect:'/index'
     },
     {
       path:'/register',

@@ -1,24 +1,8 @@
 <template>
 <div class="wrap">
   <div class="content-up">
-
-    <div class="content-l">
-      <img src="/static/img/banner.jpg" class="image">
-      <div class="desc">
-        十三亿人都会用的云笔记
-      </div>
-    </div>
-
-    <div class="content-r">
-      <div class="content-r-wrap">
-        <input type="text" placeholder="输入邮箱" class="input" v-model="formData.email">
-        <input type="text" placeholder="输入密码" class="input" v-model="formData.password">
-        <el-button class="login btn" type="primary">等录</el-button>
-        <br>
-        <el-button class="btn" @click="hendleRegister">注册</el-button>
-      </div>
-
-    </div>
+    <banner></banner>
+    <userbox></userbox>
   </div>
   <div class="content-down">
     <div class="article-wrap">
@@ -52,20 +36,13 @@
 </template>
 
 <script>
+  import userbox from '../../components/userbox'
+  import banner from '../../components/banner'
     export default {
         name: "index",
-      data(){
-          return {
-            formData:{
-              email:'',
-              password:''
-            }
-          }
-      },
-      methods:{
-        hendleRegister(){
-          this.$router.push('/register')
-        }
+      components:{
+        userbox,
+        banner
       }
     }
 </script>
@@ -74,73 +51,19 @@
   .wrap {
     width: 1170px;
     margin: 0 auto;
-
     .content-up {
       width: 100%;
       display: flex;
       justify-content: space-between;
       padding-top: 30px;
-
-      .content-l {
-        position: relative;
-        width: 750px;
-        height: 340px;
-        border-radius: 10px;
-        overflow: hidden;
-
-        .image {
-          width: 750px;
-          height: 340px;
-        }
-
-        .desc {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          font-size: 20px;
-          font-weight: 400;
-          line-height: 50px;
-          padding-left: 30px;
-          color: rgba(255, 255, 255, .8);
-          background: rgba(0, 0, 0, .5);
-        }
-      }
-      .content-r {
-        width: 360px;
-        height: 340px;
-        background: #f1f1f1;
-        border: 1px solid #f2f2f2;
-        border-radius: 5px;
-
-        .content-r-wrap {
-          width: 300px;
-          margin: 30px auto 10px;
-          box-sizing: border-box;
-          text-align: center;
-        }
-
-        .input {
-          width: 260px;
-          height: 40px;
-          margin-top: 20px;
-        }
-
-        .btn {
-          width: 264px;
-          margin-top: 20px;
-        }
-
       }
     }
 
-  }
+
   .article-wrap {
     width: 750px;
     background: #f1f1f1;
-
     margin-top: 30px;
-
 
     .article-item {
       display: block;
