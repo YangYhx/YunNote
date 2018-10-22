@@ -18,11 +18,16 @@
         >
         </quill-editor>
       </div>
-      <div>
+      <div style="margin-top: 20px">
         分类：
+        <div style="display: inline-block">
+          <el-radio-group v-for="item in categories" :key="item._id" v-model="formData.category">
+            <el-radio-button :label="item.name"></el-radio-button>
+          </el-radio-group>
+        </div>
       </div>
 
-      <el-button type="primary">发布笔记</el-button>
+      <el-button type="primary" style="margin-top: 20px" @click="hendlesubmit">发布笔记</el-button>
     </div>
 </template>
 
@@ -37,13 +42,20 @@
     export default {
       name: "writeNote",
       components: {quillEditor},
+      props:{
+        lable:{
+          type:String
+        }
+      },
       data() {
         return {
           formData:{
             content: '',
             title:'',
-            contentText:''
+            contentText:'',
+            category:''
           },
+          categories:[],
 
           // 富文本框参数设置
           editorOption: {
@@ -73,7 +85,23 @@
           console.log(text)
           this.formData.contentText = text
           this.formData.contentText = this.formData.contentText.substring(0,200) + '...'
+        },
+        getCategories(){
+          this.$axios.get('/category').then( res => {
+            this.categories = res.data;
+          })
+        },
+        hendlesubmit(){
+          this.$axios.post('/artical',this.formData).then( res => {
+            if( res.code === 200){
+              this.$message.success('文章发布成功')
+              this.$router.push('/index')
+            }
+          })
         }
+      },
+      created(){
+        this.getCategories();
       }
     }
 </script>

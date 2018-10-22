@@ -48,6 +48,9 @@
                 this.$router.push('/index')
               },1000)
             }
+            else if(res.code === 400){
+              this.$message('邮箱密码不正确，请重新输入')
+            }
           })
         },
         hendlelogout(){
@@ -56,10 +59,10 @@
             password:'',
             email:''
           };
+          this.$store.commit('CHANGE_USERINFO',userinfo);
           this.$axios.get('/logout').then( res => {
+            console.log(this.formData)
             if(res.code === 200){
-              this.$message.success('退出登录成功')
-              this.$store.commit('CHANGE_USERINFO',userinfo);
               this.formData = {...this.$store.state.userInfo}
               setTimeout(() => {
                 this.$router.push('/index')
@@ -75,6 +78,7 @@
       },
       created(){
           this.getinitdata()
+        console.log(this.formData)
       }
     }
 </script>

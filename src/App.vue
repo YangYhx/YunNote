@@ -23,16 +23,16 @@ export default {
 .fll{
   float: left;
 }
-  .flr{
-    float: right;
-  }
-  .clearfix:after{
-    display: block;
-    content: '';
-    clear: both;
-  }
-  .w1170{
-    width: 1170px;
-    margin: 0 auto;
-  }
+.flr{
+  float: right;
+}
+.clearfix:after{
+  display: block;
+  content: '';
+  clear: both;
+}
+.w1170{
+  width: 1170px;
+  margin: 0 auto;
+}
 </style>

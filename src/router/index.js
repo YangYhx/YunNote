@@ -9,7 +9,8 @@ Vue.use(Router)
 const coms = {
   index : () => import('@/views/index/index'),
   register: () => import('@/views/register/register'),
-  writenote: () => import('@/views/writeNote/writeNote')
+  writenote: () => import('@/views/writeNote/writeNote'),
+  articaldetail:() => import('@/views/articaldetail/articaldetail')
 
 
 };
@@ -33,6 +34,15 @@ const router = new Router({
       path:'/writenote',
       name:'writenote',
       component:coms.writenote
+    },
+    {
+      path:'/articaldetail/:id',
+      name:'articaldetail',
+      meta:{
+        title:'文章详情'
+      },
+      component:coms.articaldetail
+
     }
   ]
 });
